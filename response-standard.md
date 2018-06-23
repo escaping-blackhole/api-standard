@@ -58,7 +58,7 @@
            "name": "string",
            "size": number
          },
-         "path": "file_path",
+         "path": "string",
          "create_time": timestamp,
          "download_count": number,
          "collect_count": number,
