@@ -9,15 +9,21 @@
 {
   "token": "hash",
   "action", "upload",
-  "file": {
-    "hash": "hash",
-    "type": "",
-    "name": "string",
-    "size": number,
-    "path": "file_path",
-    "create_time": timestamp,
-    "owner": "user_id"
-  }
+  "data": [
+    {
+      "file": {
+        "hash": "hash",
+        "type": "",
+        "name": "string",
+        "size": number,
+      }
+      "path": "string",
+      "create_time": timestamp,
+      "owner": "user_id",
+      "": ""
+    },
+    ...
+  ]
 }
 ```
 
@@ -29,11 +35,14 @@
 {
   "token": "hash",
   "action": "string",
-  "file": {
-    "hash": ["hash", "hash", ...],
-    "initiator": "user_id",
-    "time": timestamp
-  }
+  "data": [
+    "file": {
+      "hash": "string",
+      "initiator": "user_id",
+      "time": timestamp
+    },
+    ...
+  ]
 }
 ```
 
@@ -46,9 +55,9 @@
 {
   "token": "hash",
   "action": "search",
-  "file": {
-    "name": "string",
-    "filter": ["", "", "", ...],
+  "data":{
+    "keywords": "string",
+    "filter": ["", "", ...],
     "initiator": "user_id",
     "time": timestamp
   }
