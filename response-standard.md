@@ -10,20 +10,7 @@
   "status": number,
   "msg": "用户提示信息",
   "data": {
-    "list": [
-       {
-         "file_hash": "hash",
-         "file_type": "string",
-         "file_name": "string",
-         "size": number,
-         "path": "file_path",
-         "create_time": timestamp,
-         "download_count": number,
-         "collect_count": number,
-         "like_count": number
-       },
-       ...
-    ]
+    
   }
 }
 ```
@@ -37,11 +24,17 @@
   "status": number,
   "msg": "用户提示信息",
   "data": {
-    "file_hash": "hash",
-    "path": "string",
-    "download_count": number,
-    "collect_count": number,
-    "like_count": number
+    "total": number,
+    "list": [
+      {
+         "download_count": number,
+         "collect_count": number,
+         "like_count": number,
+         "tag": "",
+         "": "",
+       },
+       ...
+    ]
   }
 }
 ```
@@ -59,16 +52,19 @@
     "total": number,
     "list": [
        {
-         "file_hash": "hash",
-         "file_type": "string",
-         "file_name": "string",
-         "size": number,
+         "file": {
+           "hash": "hash",
+           "type": "string",
+           "name": "string",
+           "size": number
+         },
          "path": "file_path",
          "create_time": timestamp,
          "download_count": number,
          "collect_count": number,
          "like_count": number,
-         "owner": "user_id"
+         "tag": "",
+         "": "",
        },
        ...
     ]
