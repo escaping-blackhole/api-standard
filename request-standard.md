@@ -16,7 +16,7 @@
         "type": "",
         "name": "string",
         "size": number,
-      }
+      },
       "path": "string",
       "create_time": timestamp,
       "owner": "user_id",
