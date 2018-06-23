@@ -2,7 +2,7 @@
 
 ### 目录
 - [文件上传](#文件上传)
-- [文件下载、收藏、喜欢](#文件下载收藏喜欢)
+- [文件下载、收藏、喜欢、删除](#文件下载收藏喜欢删除)
 - [文件搜索](#文件搜索)
 #### 文件上传
 ```
@@ -21,16 +21,16 @@
 }
 ```
 
-#### 文件下载、收藏、喜欢
+#### 文件下载、收藏、喜欢、删除
 ```
 /* 
- * @action download, collect, like
+ * @action download, collect, like, delete
  */
 {
   "token": "hash",
   "action": "string",
   "file": {
-    "hash": "hash",
+    "hash": ["hash", "hash", ...],
     "initiator": "user_id",
     "time": timestamp
   }
