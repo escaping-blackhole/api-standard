@@ -6,16 +6,554 @@
 - [专业](#专业)
 - [课程](#课程)
 - [文件](#文件)
+- [学校](#学校)
+- [文件](#文件)
+	- [课程和文件](#课程和文件)
+	- [文件与文件类别](#文件和文件类别拥有关系)
+- [用户创建文件关系](#用户创建文件关系)
+- [用户操作文件关系](#用户操作文件关系)
+***
+#文件
+##用户创建文件关系
+#####1.显示
+**url:http://localhost:8088/demo/user_createf_ile/list**
+**type: post**
+//根据类别查该类别的所有文件，直接用文件数据---讨论
+> request
+
+	    无参数pageNum,PageSize
+> response
+
+success
+```
+	{
+	    "status": 0,
+	    "msg": "",
+	    "data": {
+			"list" : [
+				{
+					"user_id":"9512101",
+					"username" : "XX"
+					"gmt_create": "2019-09-09 23:22:11",
+					"down_count":  ,
+					"collect_count" :   ,
+					"like_count" :  			
+				},
+				{
+					"user_id":"9512102",
+					"username" : "XX"
+					"gmt_create": "2019-09-09 23:22:11",
+					"down_count":  ,
+					"collect_count" :   ,
+					"like_count" :  			
+				}
+			]
+		},
+	    "success" : true
+	    
+	}
+```
+fail
+```
+    {
+    "status": 1,
+    "msg": "",
+    "data" : null,
+    "success" : false
+    }
+```
+####2.添加文件
+**url:http://localhost:8088/demo/course_fileType/{user_id}**
+**type: post**
+//根据类别查该类别的所有文件,然后添加文件
+> request
+
+     user_name,user_id,file(文件信息)
+> response
+
+success
+```
+	{
+	    "status": 0,
+	    "msg": "插入成功",
+	    "data": {},
+	    "success" : tru
+	}
+```
+fail
+```
+    {
+    "status": 1,
+    "msg": "插入失败",
+    "data" : null,
+    "success" : false
+    }
+```
+****
+##用户操作文件关系
+####1.删除文件
+**url:http://localhost:8088/demo/course_fileType/{user_id}, {file_hash}**
+**type: delete**
+//根据类别查该类别的所有文件,然后添加文件
+> request
+
+     user_id，file_hash
+> response
+
+success
+```
+	{
+	    "status": 0,
+	    "msg": "删除成功",
+	    "data": {},
+	    "success" : true
+	    
+	}
+```
+fail
+```
+    {
+    "status": 1,
+    "msg": "删除失败",
+    "data" : null,
+    "success" : false
+    }
+```
 
 ***
-### 用户
-***
+##文件和文件类别
+####1.显示
+**url:http://localhost:8088/demo/course_fileType/{file_type_id}**
+**type: post**
+//根据类别查该类别的所有文件，直接用文件数据---讨论
+> request
+
+     file_type_id,
+     pageNum,PageSize
+> response
+
+success
+```
+	{
+	    "status": 0,
+	    "msg": "",
+	    "data": {
+			"list" : [
+				{
+					"file_name",
+						
+				}
+			]
+		},
+	    "success" : true
+	    
+	}
+```
+fail
+```
+    {
+    "status": 1,
+    "msg": "",
+    "data" : null,
+    "success" : false
+    }
+```
+
+####2.添加文件
+**url:http://localhost:8088/demo/course_fileType/{file_type_id}**
+**type: post**
+//根据类别查该类别的所有文件,然后添加文件
+> request
+
+     file_type_id，file.(文件信息)
+> response
+
+success
+```
+	{
+	    "status": 0,
+	    "msg": "",
+	    "data": {
+			file_type_id,
+			//文件信息
+		},
+	    "success" : true
+	    
+	}
+```
+fail
+```
+    {
+    "status": 1,
+    "msg": "",
+    "data" : null,
+    "success" : false
+    }
+```
+
+####3.删除文件
+**url:http://localhost:8088/demo/course_fileType/{file_hash}**
+**type: delete**
+> request
+
+     file_type_id，file.(文件信息)
+> response
+
+success
+```
+	{
+	    "status": 0,
+	    "msg": "",
+	    "data": {}
+	    "success" : true    
+	}
+```
+fail
+```
+    {
+	    "status": 1,
+	    "msg": "",
+	    "data" : null,
+	    "success" : false
+    }
+```
+####4.修改文件信息
+**url:http://localhost:8088/demo/course_fileType/{file_type_id}，{file_hash}**
+**type: put**
+> request
+
+      修改的信息
+> response
+
+success
+```
+	{
+	    "status": 0,
+	    "msg": "",
+	    "data": {
+			文件名,文件点击次数，收藏次数（恶意修改而）
+		}
+	    "success" : true    
+	}
+```
+fail
+```
+    {
+	    "status": 1,
+	    "msg": "",
+	    "data" : null,
+	    "success" : false
+    }
+```
+---
+##课程和文件
+####1.课程和文件**重点内容**列表信息
+**url : http://localhost:8088/demo/manage/course_file/list**
+**type : post**
+//要显示的内容： 课程编号、课程名称、该课程下存在的文件信息 (1 -- n)
+// 文件信息包括：文件名，文件路径、文件类型
+>request
+
+		参数信息： file_name,courseName,fileType //此处到时候还需要讨论
+		pageNum,PageSize
+> response
+
+success
+```
+{
+	"status" : 0,
+	"msg" : {},
+	"data" : {
+		//total为数据库查询的数据
+		"total" : 5
+		"list" : [
+			{
+				"course_id" : "020420",
+				"course_name" : "C语言程序设计",
+				"file_name" : "filename",
+				"file_url" : "file_url"
+				"file_type" : "file_type"
+			},
+			{
+				"course_id" : "020460",
+				"course_name" : "计算机组成原理",
+				"file_name" : "filename",
+				"file_url" : "file_url",
+				"file_type" : "file_type"
+		],
+		"pageNum": 1,
+        "pageSize": 10,
+        "size": 5,
+        "startRow": 1,
+        "endRow": 5,
+        "pages": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1
+        ],
+        "navigateFirstPage": 1,
+        "navigateLastPage": 1,
+        "firstPage": 1,
+        "lastPage": 1	
+		},
+		"success" : true
+	}
+}
+```
+fail
+```
+{
+	"status" : 0,
+	"msg" : "查询失败",
+	"data" : null,
+	"success" : false
+}
+```
+
+####2.课程和文件的添加
+**url :  http://localhost:8088/demo/manage/course_file/**
+**type : post**
+//课程和文件添加处理：用户上传点击
+>request
+
+			course_id, course_name, file,file_type    //程序生成hash值,路径
+>response
+			
+success
+```
+	{
+		"status" : 0,
+		"msg" : "添加成功",
+		"data" : {},
+		"success" : true
+	}
+```
+fail
+```
+	{
+		"status" : 0,
+		"msg" : "失败",
+		"data" : null,
+		"success" : false
+	}
+```
+
+####3.课程和文件删除
+//想法是查询课程下所有文件，删除根据文件的hash值
+**url :  http://localhost:8088/demo/manage/course_file/{file_hash}**
+**type : delete**
+> request
+
+	file_hash
+> response
+
+success
+```
+	{
+
+		"status" : 0,
+		"msg" : "删除成功",
+		"data" : {},
+		"success" : true
+	}
+```
+
+fail 
+```
+
+	{
+		"status" : 0,
+		"msg" : "删除失败",
+		"data" : null,
+		"success" : false
+	}
+```
+
+####4.课程和文件关系修改
+**url :  http://localhost:8088/demo/manage/course_file/{course_id},{file_hash}**
+**type : put**
+> request
+
+	course_id,file_hash
+>response
+
+success
+```
+	{
+		"status" : 0,
+		"msg" : "修改成功",
+		"data" : {},
+		"success" : true
+	}
+```
+fail
+```
+	{
+		"status" : 0,
+		"msg" : "修改失败",
+		"data" : null,
+		"success" : false
+	}
+```
+
+---
+##学校
+####1.学校列表信息
+**url:http://localhost:8088/demo/manage/school/list**
+**type:post**
+> request
+
+	pageNum,pageSize
+> response
+
+success
+
+```
+	{
+		"status": 0,
+		"msg": null,
+		"data" : {
+			 "total" : 5
+			 "list" : [
+				 {
+					 "school_Id" : 99991
+					"school_name" :	 "湖北汽车工业学院"
+				},
+				{
+					 "school_Id" : 99992
+					"school_name" :	 "湖北商业学院"
+				}
+			 ],
+		"pageNum": 1,
+        "pageSize": 10,
+        "size": 5,
+        "startRow": 1,
+        "endRow": 5,
+        "pages": 1,
+        "prePage": 0,
+        "nextPage": 0,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "hasPreviousPage": false,
+        "hasNextPage": false,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1
+        ],
+        "navigateFirstPage": 1,
+        "navigateLastPage": 1,
+        "firstPage": 1,
+        "lastPage": 1	
+		},
+		"success" : true
+	}
+```
+
+
+
+####2.删除学校信息
+**url : http://localhost:8088/demo/manage/school/{school_id}**
+**type : delete**
+
+> reqeust  无参数信息  school_id可以为数组
+
+		无参数
+
+> response
+
+success 
+```
+ {
+		"status" : 0,
+		"msg" : "删除成功",
+		"data" : {},
+		"success" : true
+}
+```
+
+fail 
+```
+{
+		"status" : 0,
+		"msg" : "删除失败",
+		"data" : null,
+		"success" : false
+}
+```
+
+####3.修改学校信息
+**url : http://localhost:8088/demo/manage/school/{school_id}**
+**type :  put**
+
+> request : 
+
+		school_name //注：由于school_id是主码，所以为了保证主码唯一性，只能修改学校名
+		
+> response
+
+
+success
+```
+ {
+		"status" : 0,
+		"msg" : "修改成功",
+		"data" : {},
+		"success" : true
+ }
+```
+fail
+```
+{
+		"status" : 0,
+		"msg" : "修改失败",
+		"data" : {},
+		"success" : false
+}
+```
+
+####4.添加学校记录
+**url : http://localhost:8088/demo/manage/school/**
+***type : post**
+
+> request
+
+	school_id, school_name
+
+> response
+
+success 
+```
+	{
+		
+
+	}
+```
+fail 
+```
+	{
+
+	}
+	
+```
+
+
+	
+				
+----
+
+----
 
 #### 1.用户列表信息 <br>
 
 **url:http://localhost:8088/demo/manage/user/list**
 **type: post**
-
+//后台请求学校列表信息数据
 > request
 
      pageNum,pageSize
@@ -330,13 +868,98 @@ fail  有很多种情况  具体再讨论
 
 
 ***
-### 专业
-***
-### 文件
+## 专业
+**url:http://localhost:8088/demo/manage/major/list**
+**type: post**
+> request
+
+     pageNum,pageSize,majorName
+     
+> response
+
+success
+
+	{
+	    "status": 0,
+	    "msg": null,
+	    "data": {
+	        "total": 4,
+	        "list": [
+	            {
+	                "majorId": "10000",
+	                "majorName": "数学"
+	            },
+	            {
+	                "majorId": "10001",
+	                "majorName": "计算机"
+	            },
+	            {
+	                "majorId": "10002",
+	                "majorName": "英语"
+	            },
+	            {
+	                "courseId": "10003",
+	                "courseName": "物理"
+	            }
+	        ],
+	        "pageNum": 1,
+	        "pageSize": 10,
+	        "size": 4,
+	        "startRow": 1,
+	        "endRow": 4,
+	        "pages": 1,
+	        "prePage": 0,
+	        "nextPage": 0,
+	        "isFirstPage": true,
+	        "isLastPage": true,
+	        "hasPreviousPage": false,
+	        "hasNextPage": false,
+	        "navigatePages": 8,
+	        "navigatepageNums": [
+	            1
+	        ],
+	        "navigateFirstPage": 1,
+	        "navigateLastPage": 1,
+	        "firstPage": 1,
+	        "lastPage": 1
+	    },
+	    "success": true
+	}
+
+fail
+
 ***
 
-#### 1.文件显示 <br>
-**url:http://10.10.57.62:8088/demo/manage/file/{id}**
+#### 2.删除专业<br>
+**url:http://10.10.57.62:8088/demo/manage/major/{major_id}**
+**type: delete**
+> request    id可为数组  如: 01,02,02
+
+     无参数
+> response
+
+success
+
+	  {
+	    "status": 0,
+	    "msg": "删除成功",
+	    "data": {},
+	    "success": true
+	   }
+
+fail
+
+    {
+	    "status": 1,
+	    "msg": "删除失败",
+	    "data": null,
+	    "success": false
+    }
+
+***
+
+#### 3.修改专业 <br>
+**url:http://10.10.57.62:8088/demo/manage/course/{major_id}**
 **type: put**
 > request  (只需要提交需要修改的数据)
 
@@ -344,26 +967,34 @@ fail  有很多种情况  具体再讨论
 > response  
 
 success
-      {
+
+	   {
 	    "status": 0,
 	    "msg": "修改成功",
-	    "data": 显示:文件名,文件摘要，路径，创建日期，收藏次数，喜欢次数，下载次数
+	    "data": {},
 	    "success": true
-      }
+	   }
 
 fail  有很多种情况  具体再讨论
 
-     {
+    {
 	    "status": 1,
 	    "msg": "修改失败",
 	    "data": null,
 	    "success": false
-     }
-
-***
+    }
 
 
 
+
+
+
+
+
+
+
+
+----
 #### 5.模板 <br>
 **url:http://10.10.57.62:8088/demo/user/list**
 **type: post**
